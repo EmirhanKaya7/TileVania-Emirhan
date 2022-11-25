@@ -25,14 +25,16 @@ public class PlayerMovement : MonoBehaviour
     CapsuleCollider2D myCapsule;
     bool canDoubleJump;
     float gravityScaleAtStart;
+
+    public bool ChangeCamera {get; private set;} = false;
     // Start is called before the first frame update
 
-    private void Enable(){
+    private void OnEnable(){
         CameraScript.Register(tpcamera);
         CameraScript.Register(fpcamera);
         CameraScript.SwitchCam(tpcamera);
     }
-private void onDisable(){
+private void OnDisable(){
         CameraScript.Unregister(tpcamera);
         CameraScript.Unregister(fpcamera);
 
@@ -55,7 +57,7 @@ private void onDisable(){
         FlipSprite();
         ClimbLadder();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Q))
         {
             if (CameraScript.isActiveCam(tpcamera))
             {
