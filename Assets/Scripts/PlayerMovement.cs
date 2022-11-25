@@ -4,14 +4,20 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
 
+
+
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
+
+    [SerializeField] CinemachineVirtualCamera fpcamera;
+    [SerializeField] CinemachineVirtualCamera tpcamera;
+
 
     Vector2 moveInput;
     Rigidbody2D myRigid;
@@ -20,6 +26,17 @@ public class PlayerMovement : MonoBehaviour
     bool canDoubleJump;
     float gravityScaleAtStart;
     // Start is called before the first frame update
+
+    private void Enable(){
+        CameraScript.Register(tpcamera);
+        CameraScript.Register(fpcamera);
+        CameraScript.SwitchCam(tpcamera);
+    }
+private void onDisable(){
+        CameraScript.Unregister(tpcamera);
+        CameraScript.Unregister(fpcamera);
+
+}
     void Start()
     {
         myRigid = GetComponent<Rigidbody2D>();
@@ -32,9 +49,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         Run();
         FlipSprite();
         ClimbLadder();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (CameraScript.isActiveCam(tpcamera))
+            {
+                CameraScript.SwitchCam(fpcamera);
+            }else if (CameraScript.isActiveCam(fpcamera))
+            {
+                CameraScript.SwitchCam(tpcamera);
+            }
+            
+        }
     }
 
     void OnMove(InputValue value) {

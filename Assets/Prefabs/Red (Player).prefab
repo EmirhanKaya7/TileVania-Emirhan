@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7763376971274413607}
   - component: {fileID: 1886350701921374279}
   - component: {fileID: 4234406526479337348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Red (Player)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,3 +191,5 @@ MonoBehaviour:
   runSpeed: 10
   jumpSpeed: 15
   climbSpeed: 5
+  fpcamera: {fileID: 0}
+  tpcamera: {fileID: 0}

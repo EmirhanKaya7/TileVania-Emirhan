@@ -30677,7 +30677,7 @@ MonoBehaviour:
   - {fileID: 1869992705}
   m_Instructions:
   - m_FullHash: -397766897
-    m_VirtualCamera: {fileID: 22142619}
+    m_VirtualCamera: {fileID: 0}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: 256545655
@@ -30777,7 +30777,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.26
+  orthographic size: 5.78
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -39250,9 +39250,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red (Player)
       objectReference: {fileID: 0}
-    - target: {fileID: 3097347824506631029, guid: b6b9b2a9e42c6234f9710e7cfd94f758, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
+    - target: {fileID: 4234406526479337348, guid: b6b9b2a9e42c6234f9710e7cfd94f758, type: 3}
+      propertyPath: fpcamera
+      value: 
+      objectReference: {fileID: 22142619}
+    - target: {fileID: 4234406526479337348, guid: b6b9b2a9e42c6234f9710e7cfd94f758, type: 3}
+      propertyPath: tpcamera
+      value: 
+      objectReference: {fileID: 1869992705}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b9b2a9e42c6234f9710e7cfd94f758, type: 3}
