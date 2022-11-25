@@ -30682,7 +30682,7 @@ MonoBehaviour:
     m_MinDuration: 0
   - m_FullHash: 256545655
     m_VirtualCamera: {fileID: 992095908}
-    m_ActivateAfter: 1
+    m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -725336713
     m_VirtualCamera: {fileID: 1869992705}
