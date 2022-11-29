@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
+    [SerializeField] Vector2 deathkick = new Vector2(10f,10f);
+
 
     [SerializeField] CinemachineVirtualCamera fpcamera;
     [SerializeField] CinemachineVirtualCamera tpcamera;
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
-
+    bool isAlive = true;
     bool canDoubleJump;
     float gravityScaleAtStart;
 
@@ -54,12 +56,17 @@ private void OnDisable(){
     // Update is called once per frame
     void Update()
     {
-        
+        if (!isAlive){return;}
         
         Run();
         FlipSprite();
         ClimbLadder();
+        Die();
+        SwitchCam();
+        
+    }
 
+    void SwitchCam(){
         if (Input.GetKey(KeyCode.Q))
         {
             if (CameraScript.isActiveCam(tpcamera))
@@ -72,12 +79,13 @@ private void OnDisable(){
             
         }
     }
-
     void OnMove(InputValue value) {
+        if (!isAlive){return;}
         moveInput = value.Get<Vector2>();
     }
     void OnJump(InputValue value)
     {
+        if (!isAlive){return;}
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             if (canDoubleJump)
@@ -131,4 +139,14 @@ private void OnDisable(){
         myAnimator.SetBool("isClimbing",playerHasVerticalSpeed); 
 
     }
+
+    void Die(){
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
+            myAnimator.SetTrigger("Dying"); 
+            myRigid.velocity = deathkick;
+        }
+    }
+
 }

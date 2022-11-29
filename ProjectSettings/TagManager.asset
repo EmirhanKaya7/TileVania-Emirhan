@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Background
   - Jumping
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Platforms
     uniqueID: 1955202591
+    locked: 0
+  - name: Enemies
+    uniqueID: 3958005873
     locked: 0
   - name: Player
     uniqueID: 1911453531
