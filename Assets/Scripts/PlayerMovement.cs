@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System;
+using System.Security.Cryptography;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathkick = new Vector2(10f,10f);
-
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform gun;
 
     [SerializeField] CinemachineVirtualCamera fpcamera;
     [SerializeField] CinemachineVirtualCamera tpcamera;
@@ -105,7 +108,12 @@ private void OnDisable(){
         }
 
     }
-    
+    void OnFire(InputValue value)
+    {
+        if(!isAlive) { return;}
+        Instantiate(bullet,gun.position,transform.rotation);
+    }
+
     void Run(){
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed,myRigid.velocity.y);
         myRigid.velocity = playerVelocity;
@@ -143,7 +151,7 @@ private void OnDisable(){
     }
 
     void Die(){
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
         {
             isAlive = false;
             myAnimator.SetTrigger("Dying"); 
