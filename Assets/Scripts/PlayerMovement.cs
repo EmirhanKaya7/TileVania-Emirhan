@@ -67,11 +67,11 @@ private void OnDisable(){
         FlipSprite();
         ClimbLadder();
         Die();
-        SwitchCam();
+        //SwitchCam();
         
     }
 
-    void SwitchCam(){
+   /*void SwitchCam(){
         if (Input.GetKey(KeyCode.Q))
         {
             if (CameraScript.isActiveCam(tpcamera))
@@ -84,10 +84,13 @@ private void OnDisable(){
             
         }
     }
+   */
+
     void OnMove(InputValue value) {
         if (!isAlive){return;}
         moveInput = value.Get<Vector2>();
     }
+    
     void OnJump(InputValue value)
     {
         if (!isAlive){return;}
@@ -156,6 +159,7 @@ private void OnDisable(){
             isAlive = false;
             myAnimator.SetTrigger("Dying"); 
             myRigid.velocity = deathkick;
+            CameraScript.SwitchCam(fpcamera);
         }
     }
 
