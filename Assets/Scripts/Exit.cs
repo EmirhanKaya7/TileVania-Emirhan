@@ -17,7 +17,13 @@ IEnumerator NextLevel()
 {
     yield return new WaitForSecondsRealtime(levelLoadDelay);  
     int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-    SceneManager.LoadScene(currentSceneIndex + 1);
+    int nextSceneIndex = currentSceneIndex+1;
+
+    if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+    {
+        nextSceneIndex = 0;
+    }
+    SceneManager.LoadScene(nextSceneIndex);
 }
 
 
