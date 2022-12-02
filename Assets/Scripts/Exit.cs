@@ -7,10 +7,12 @@ public class Exit : MonoBehaviour
     [SerializeField] float levelLoadDelay =  1f;
 void OnTriggerEnter2D(Collider2D other)
 {
+    if (other.tag == "Player")
+    {
+       
     StartCoroutine(NextLevel());
 
-    int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-    SceneManager.LoadScene(currentSceneIndex + 1);
+    }
 }
 
 IEnumerator NextLevel()
@@ -23,6 +25,7 @@ IEnumerator NextLevel()
     {
         nextSceneIndex = 0;
     }
+    FindObjectOfType<ScenePersist>().ResetScenePersist();    
     SceneManager.LoadScene(nextSceneIndex);
 }
 

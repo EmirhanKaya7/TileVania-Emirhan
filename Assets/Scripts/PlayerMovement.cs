@@ -159,7 +159,9 @@ private void OnDisable(){
             isAlive = false;
             myAnimator.SetTrigger("Dying"); 
             myRigid.velocity = deathkick;
-            CameraScript.SwitchCam(fpcamera);
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
+            
+            
         }
     }
 
