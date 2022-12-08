@@ -180,8 +180,6 @@ private void OnDisable(){
             coinCollect.AddCoins(other.transform.position,2);
             
             Destroy(other.gameObject);
-            
-            //Destroy(Instantiate(coinNumPre,other.transform.position,Quaternion.identity),1f);
         }
     }
 }

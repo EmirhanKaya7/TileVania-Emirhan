@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4212926363185258981}
   - component: {fileID: 4212926363185259003}
   - component: {fileID: 4212926363185258980}
-  - component: {fileID: 2256136057618498072}
   - component: {fileID: 4212926363185259002}
   - component: {fileID: -8238544392769742484}
   m_Layer: 14
@@ -104,20 +103,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.1848535}
   serializedVersion: 2
   m_Radius: 0.1636185
---- !u!114 &2256136057618498072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212926363185258982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07d2abac7fc9b0b4cb65c0c78e441224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinpicksfx: {fileID: 8300000, guid: 6aea6a792915edc4b8eaad0ed446f568, type: 3}
-  pointsforcoin: 10
 --- !u!95 &4212926363185259002
 Animator:
   serializedVersion: 4

@@ -29,11 +29,13 @@ public class CoinCollect : MonoBehaviour
 
     [SerializeField] [Range(0.5f,0.9f)] float minAnim;
     [SerializeField] [Range(0.9f,2f)] float maxAnim;
+    [SerializeField] AudioClip coinpicksfx;
+
     Vector3 targetPos;
     void Awake() {
        targetPos = target.position; 
 
-PrepareCoins();
+        PrepareCoins();
     }
 
     void PrepareCoins(    ){
@@ -72,6 +74,7 @@ PrepareCoins();
     }
     public void AddCoins(Vector3 collectedLoc,int amount){
         Animate(collectedLoc,amount);
+        AudioSource.PlayClipAtPoint(coinpicksfx, Camera.main.transform.position);
         
     }
     
