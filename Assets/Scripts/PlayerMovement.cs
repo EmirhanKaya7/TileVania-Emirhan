@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using System;
 using System.Security.Cryptography;
-
+using DG.Tweening;
 public class PlayerMovement : MonoBehaviour
 {
 
@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathkick = new Vector2(10f,10f);
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject coinNumPre;
+
     [SerializeField] Transform gun;
 
     [SerializeField] CinemachineVirtualCamera fpcamera;
@@ -34,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
     bool isAlive = true;
     bool canDoubleJump;
     float gravityScaleAtStart;
+
+    public int coins;
+    
+    public CoinCollect coinCollect;
+
 
     public bool ChangeCamera {get; private set;} = false;
     // Start is called before the first frame update
@@ -55,7 +62,7 @@ private void OnDisable(){
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = myRigid.gravityScale;
-
+        coinCollect = FindObjectOfType<CoinCollect>();
     }
 
     // Update is called once per frame
@@ -114,7 +121,9 @@ private void OnDisable(){
     void OnFire(InputValue value)
     {
         if(!isAlive) { return;}
+        bullet.GetComponent<SpriteRenderer>().DOColor(UnityEngine.Random.ColorHSV(),1f);
         Instantiate(bullet,gun.position,transform.rotation);
+        
     }
 
     void Run(){
@@ -161,8 +170,18 @@ private void OnDisable(){
             myRigid.velocity = deathkick;
             FindObjectOfType<GameSession>().ProcessPlayerDeath();
             
-            
         }
     }
+    bool wasCollected = false;
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Coin")&&!wasCollected)
+        {
+            coinCollect.AddCoins(other.transform.position,2);
+            
+            Destroy(other.gameObject);
+            
+            //Destroy(Instantiate(coinNumPre,other.transform.position,Quaternion.identity),1f);
+        }
+    }
 }
