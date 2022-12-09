@@ -202,7 +202,7 @@ MonoBehaviour:
   fpcamera: {fileID: 0}
   tpcamera: {fileID: 0}
   coins: 0
-  coinCollect: {fileID: 0}
+  coinCollect: {fileID: 3829095735906299042, guid: dd712adc2e653444db3878dd16fc18e6, type: 3}
 --- !u!61 &6170766825486917412
 BoxCollider2D:
   m_ObjectHideFlags: 0

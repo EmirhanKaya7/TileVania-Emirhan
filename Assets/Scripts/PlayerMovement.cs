@@ -7,27 +7,18 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using System;
-using System.Security.Cryptography;
 using DG.Tweening;
 public class PlayerMovement : MonoBehaviour
 {
-
-   
-   
-
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathkick = new Vector2(10f,10f);
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject coinNumPre;
-
     [SerializeField] Transform gun;
-
     [SerializeField] CinemachineVirtualCamera fpcamera;
     [SerializeField] CinemachineVirtualCamera tpcamera;
-
-
     Vector2 moveInput;
     Rigidbody2D myRigid;
     Animator myAnimator;
@@ -36,25 +27,10 @@ public class PlayerMovement : MonoBehaviour
     bool isAlive = true;
     bool canDoubleJump;
     float gravityScaleAtStart;
-
     public int coins;
-    
     public CoinCollect coinCollect;
-
-
     public bool ChangeCamera {get; private set;} = false;
-    // Start is called before the first frame update
-
-    private void OnEnable(){
-        CameraScript.Register(tpcamera);
-        CameraScript.Register(fpcamera);
-        CameraScript.SwitchCam(tpcamera);
-    }
-private void OnDisable(){
-        CameraScript.Unregister(tpcamera);
-        CameraScript.Unregister(fpcamera);
-
-}
+    
     void Start()
     {
         myRigid = GetComponent<Rigidbody2D>();
@@ -64,20 +40,17 @@ private void OnDisable(){
         gravityScaleAtStart = myRigid.gravityScale;
         coinCollect = FindObjectOfType<CoinCollect>();
     }
-
     // Update is called once per frame
     void Update()
     {
         if (!isAlive){return;}
-        
         Run();
         FlipSprite();
         ClimbLadder();
         Die();
         //SwitchCam();
-        
+        coinCollect.PrepareCoins();
     }
-
    /*void SwitchCam(){
         if (Input.GetKey(KeyCode.Q))
         {
@@ -92,12 +65,10 @@ private void OnDisable(){
         }
     }
    */
-
     void OnMove(InputValue value) {
         if (!isAlive){return;}
         moveInput = value.Get<Vector2>();
     }
-    
     void OnJump(InputValue value)
     {
         if (!isAlive){return;}

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 using TMPro;
-using Unity.UI;
+
 
 public class CoinCollect : MonoBehaviour
 {
@@ -21,36 +21,27 @@ public class CoinCollect : MonoBehaviour
     }
     [SerializeField] Transform target;
     [SerializeField] Ease easeType;
-
-    // public Transform initial;
     [SerializeField] GameObject CoinPreFab;
     [SerializeField] int MaxCoins;
     Queue<GameObject> coinsQ = new Queue<GameObject>();
-
     [SerializeField] [Range(0.5f,0.9f)] float minAnim;
     [SerializeField] [Range(0.9f,2f)] float maxAnim;
     [SerializeField] AudioClip coinpicksfx;
-
     Vector3 targetPos;
     void Awake() {
        targetPos = target.position; 
-
         PrepareCoins();
     }
-
-    void PrepareCoins(    ){
+    public void PrepareCoins(){
             GameObject coin;
         
         for (int i = 0; i < MaxCoins; i++)
         {
-        
                 coin = Instantiate (CoinPreFab);
                 coin.transform.parent = transform;
                 coin.SetActive(false);
                 coinsQ.Enqueue(coin);   
         }
-        
-
     }
     void Animate(Vector3 collectedLoc,int amount){
         
@@ -68,14 +59,11 @@ public class CoinCollect : MonoBehaviour
                     Coins++;
                 });
             }
-
-
         }
     }
     public void AddCoins(Vector3 collectedLoc,int amount){
         Animate(collectedLoc,amount);
         AudioSource.PlayClipAtPoint(coinpicksfx, Camera.main.transform.position);
-        
     }
     
 }

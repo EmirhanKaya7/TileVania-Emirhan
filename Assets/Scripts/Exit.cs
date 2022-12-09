@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Exit : MonoBehaviour
 {
-    [SerializeField] float levelLoadDelay =  1f;
+[SerializeField] float levelLoadDelay =  1f;
+CoinCollect coinMan;
 void OnTriggerEnter2D(Collider2D other)
 {
     if (other.tag == "Player")
@@ -14,7 +15,6 @@ void OnTriggerEnter2D(Collider2D other)
 
     }
 }
-
 IEnumerator NextLevel()
 {
     yield return new WaitForSecondsRealtime(levelLoadDelay);  
@@ -27,7 +27,6 @@ IEnumerator NextLevel()
     }
     FindObjectOfType<ScenePersist>().ResetScenePersist();    
     SceneManager.LoadScene(nextSceneIndex);
+    
 }
-
-
 }
