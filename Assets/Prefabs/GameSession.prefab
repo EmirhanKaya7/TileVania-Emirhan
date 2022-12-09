@@ -422,6 +422,7 @@ MonoBehaviour:
   score: 0
   livestext: {fileID: 1006193510}
   scorestext: {fileID: 203883485}
+  conMan: {fileID: 3829095735906299042, guid: dd712adc2e653444db3878dd16fc18e6, type: 3}
 --- !u!1 &8537236582872424957
 GameObject:
   m_ObjectHideFlags: 0

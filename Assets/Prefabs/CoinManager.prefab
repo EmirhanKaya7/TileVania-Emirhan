@@ -50,7 +50,7 @@ MonoBehaviour:
   target: {fileID: 0}
   easeType: 28
   CoinPreFab: {fileID: 2230909208457283642, guid: 4704a7868f1610c4ea915199f755ce32, type: 3}
-  MaxCoins: 50
+  MaxCoins: 10
   minAnim: 0.782
   maxAnim: 2
   coinpicksfx: {fileID: 8300000, guid: 6aea6a792915edc4b8eaad0ed446f568, type: 3}

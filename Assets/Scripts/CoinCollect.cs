@@ -28,7 +28,7 @@ public class CoinCollect : MonoBehaviour
     [SerializeField] [Range(0.9f,2f)] float maxAnim;
     [SerializeField] AudioClip coinpicksfx;
     Vector3 targetPos;
-    void Awake() {
+    void OnUpdate() {
        targetPos = target.position; 
         PrepareCoins();
     }

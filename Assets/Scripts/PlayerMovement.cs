@@ -17,8 +17,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject coinNumPre;
     [SerializeField] Transform gun;
-    [SerializeField] CinemachineVirtualCamera fpcamera;
-    [SerializeField] CinemachineVirtualCamera tpcamera;
     Vector2 moveInput;
     Rigidbody2D myRigid;
     Animator myAnimator;
@@ -51,20 +49,8 @@ public class PlayerMovement : MonoBehaviour
         //SwitchCam();
         coinCollect.PrepareCoins();
     }
-   /*void SwitchCam(){
-        if (Input.GetKey(KeyCode.Q))
-        {
-            if (CameraScript.isActiveCam(tpcamera))
-            {
-                CameraScript.SwitchCam(fpcamera);
-            }else if (CameraScript.isActiveCam(fpcamera))
-            {
-                CameraScript.SwitchCam(tpcamera);
-            }
-            
-        }
-    }
-   */
+
+       
     void OnMove(InputValue value) {
         if (!isAlive){return;}
         moveInput = value.Get<Vector2>();
@@ -149,8 +135,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Coin")&&!wasCollected)
         {
             coinCollect.AddCoins(other.transform.position,2);
-            
             Destroy(other.gameObject);
+            
         }
     }
 }

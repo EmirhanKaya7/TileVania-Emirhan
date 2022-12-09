@@ -11,12 +11,14 @@ public class GameSession : MonoBehaviour
     [SerializeField] int score = 0;
     [SerializeField] TextMeshProUGUI livestext;
     [SerializeField] TextMeshProUGUI scorestext;
+   [SerializeField] CoinCollect conMan;
     void Awake()
     {
         int numGameSession = FindObjectsOfType<GameSession>().Length;
         if (numGameSession >1 )
         {
             Destroy(gameObject);
+            DontDestroyOnLoad(conMan);
         }
         else
         {
@@ -38,11 +40,11 @@ public class GameSession : MonoBehaviour
         ResetGameSession();
     }
    }
-    public void AddScore(int pointsToAdd){
+   /* public void AddScore(int pointsToAdd){
         score+=pointsToAdd;
         scorestext.text=score.ToString();
 
-    }
+    }*/
      void TakeLife()
     {
         playerLives --;
