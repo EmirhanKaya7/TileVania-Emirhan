@@ -4,11 +4,13 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class CoinCollect : MonoBehaviour
 {
     [SerializeField] TMP_Text coinUIText;
+    [SerializeField] Image coinImg;
     private int _c=0;
 
     public float speed;
@@ -53,7 +55,7 @@ public class CoinCollect : MonoBehaviour
                 coin.SetActive(true);
                 coin.transform.position = collectedLoc;
                 float duration = UnityEngine.Random.Range(minAnim,maxAnim);
-                coin.transform.DOMove(coinUIText.transform.position,duration).SetEase(easeType).OnComplete(()=>{
+                coin.transform.DOMove(coinImg.transform.position,duration).SetEase(easeType).OnComplete(()=>{
                     coin.SetActive(false);
                     coinsQ.Enqueue(coin);
                     Coins++;

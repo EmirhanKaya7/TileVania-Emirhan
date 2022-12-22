@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject coinNumPre;
     [SerializeField] Transform gun;
+    [SerializeField] Image Cimage;
     Vector2 moveInput;
     Rigidbody2D myRigid;
     Animator myAnimator;
@@ -136,6 +137,19 @@ public class PlayerMovement : MonoBehaviour
         {
             coinCollect.AddCoins(other.transform.position,2);
             Destroy(other.gameObject);
+            
+        }
+        else if (other.CompareTag("Coin1")&&!wasCollected)
+        {
+            other.gameObject.SetActive(true);
+                other.transform.position = other.transform.position;
+                float duration = 1f;
+                other.transform.DOJump(Cimage.transform.position,2f,2,duration).SetEase(Ease.OutBounce).OnComplete(() => {
+                    other.transform.DOScale(other.transform.localScale*2,1f).SetEase(Ease.InOutBack).OnComplete(()=> {
+                        Destroy(other.gameObject);
+                    });
+                    
+                });
             
         }
     }
